@@ -1,12 +1,12 @@
-﻿namespace CompositionTests
-{
-    using System;
-    using System.IO;
-    using System.Reflection;
-    using System.Text.RegularExpressions;
-    using ApprovalTests;
-    using Microsoft.ComponentModel.Composition.Diagnostics;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using ApprovalTests;
+using Microsoft.ComponentModel.Composition.Diagnostics;
 
+namespace CompositionTests
+{
     public class Composition
     {
         public static void DiscoverParts(Func<CompositionInfo> getCompositionInfo, params Func<string, string>[] scrubbers)
