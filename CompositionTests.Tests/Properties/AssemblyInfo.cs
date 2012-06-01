@@ -10,3 +10,4 @@ using ApprovalTests.Reporters;
 [assembly: Guid("b45a75c1-fab4-4cbe-a78c-9ff6b70de153")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyCopyright("Copyright © Jim Counts 2012")]
