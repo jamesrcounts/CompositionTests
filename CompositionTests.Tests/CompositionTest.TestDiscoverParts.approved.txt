@@ -1,9 +1,6 @@
 [Part] CompositionTests.Tests.CompositionTest+TestingPart from: AssemblyCatalog (Assembly="CompositionTests.Tests, Culture=neutral")
   [Export] CompositionTests.Tests.CompositionTest+TestingPart (ContractName="CompositionTests.Tests.CompositionTest+TestingPart")
 
-<<<<<<< HEAD
-=======
 [Part] CompositionTests.Tests.FileRemover from: AssemblyCatalog (Assembly="CompositionTests.Tests, Culture=neutral")
   [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
 
->>>>>>> orderedformatter
