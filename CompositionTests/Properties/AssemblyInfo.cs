@@ -6,6 +6,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("CompositionTests")]
 [assembly: ComVisible(false)]
 [assembly: Guid("7e4943d0-2b5c-422f-b099-85cb2e171d1c")]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.1.*")]
 [assembly: AssemblyCompanyAttribute("Jim Counts")]
 [assembly: AssemblyCopyright("Copyright © Jim Counts 2012")]

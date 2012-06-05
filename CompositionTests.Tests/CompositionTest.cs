@@ -11,10 +11,28 @@ namespace CompositionTests.Tests
     [TestClass]
     public class CompositionTest
     {
-        private const string assemblyCatalogSignature = "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")";
-
         [TestMethod]
         public void TestDiscoverParts()
+        {
+            Composition.DiscoverParts(
+                new AssemblyCatalog(Assembly.GetExecutingAssembly()),
+                s => s.ScrubVersionNumber().ScrubPublicKeyToken());
+        }
+
+        [TestMethod]
+        public void TestDiscoverPartsWithCatalogAndProvider()
+        {
+            AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            CompositionContainer compositionContainer = new CompositionContainer(catalog);
+            Composition.DiscoverParts(
+                catalog,
+                compositionContainer,
+                s => s.ScrubPublicKeyToken(),
+                s => s.ScrubVersionNumber());
+        }
+
+        [TestMethod]
+        public void TestDiscoverPartsWithFactory()
         {
             Composition.DiscoverParts(
                 () =>
@@ -22,8 +40,8 @@ namespace CompositionTests.Tests
                     var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
                     return new CompositionInfo(catalog, new CompositionContainer(catalog));
                 },
-                Composition.ScrubPublicKeyToken,
-                Composition.ScrubVersionNumber);
+                s => s.ScrubPublicKeyToken(),
+                s => s.ScrubVersionNumber());
         }
 
         [TestMethod]
@@ -49,22 +67,6 @@ namespace CompositionTests.Tests
             {
                 Console.SetError(consoleError);
             }
-        }
-
-        [TestMethod]
-        public void TestScrubPublicKeyToken()
-        {
-            Assert.AreEqual(
-                "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral\")",
-                Composition.ScrubPublicKeyToken(assemblyCatalogSignature));
-        }
-
-        [TestMethod]
-        public void TestScrubVersionNumber()
-        {
-            Assert.AreEqual(
-                "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")",
-                Composition.ScrubVersionNumber(assemblyCatalogSignature));
         }
 
         [Export]
