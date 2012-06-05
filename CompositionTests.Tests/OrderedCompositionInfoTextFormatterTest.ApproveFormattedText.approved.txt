@@ -1,0 +1,6 @@
+[Part] CompositionTests.Tests.CompositionTest+TestingPart from: AssemblyCatalog (Assembly="CompositionTests.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+  [Export] CompositionTests.Tests.CompositionTest+TestingPart (ContractName="CompositionTests.Tests.CompositionTest+TestingPart")
+
+[Part] CompositionTests.Tests.FileRemover from: AssemblyCatalog (Assembly="CompositionTests.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+  [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
+
