@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CarDealership
 {
@@ -11,5 +9,4 @@ namespace CarDealership
       throw new NotImplementedException();
     }
   }
-
 }

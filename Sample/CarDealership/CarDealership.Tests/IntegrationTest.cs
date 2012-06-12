@@ -12,36 +12,36 @@ namespace CarDealership.Tests
   [TestClass]
   public class IntegrationTest
   {
-[TestMethod]
-public void DiscoverParts()
-{
-  DiscoverParts(Program.Catalog, Program.Host);
-}
-
-private static void DiscoverParts(ComposablePartCatalog catalog, ExportProvider host)
-{
-  DiscoverParts(() => new CompositionInfo(catalog, host));
-}
-
-private static void DiscoverParts(Func<CompositionInfo> getCompositionInfo)
-{
-  try
-  {
-    using (var stringWriter = new StringWriter())
+    [TestMethod]
+    public void DiscoverParts()
     {
-      CompositionInfoTextFormatter.Write(
-          getCompositionInfo(),
-          stringWriter);
-      Approvals.Verify(stringWriter.ToString());
+      DiscoverParts(Program.Catalog, Program.Host);
     }
-  }
-  catch (ReflectionTypeLoadException ex)
-  {
-    Array.ForEach(
-        ex.LoaderExceptions,
-        lex => Console.WriteLine(lex.ToString()));
-    throw;
-  }
-}
+
+    private static void DiscoverParts(ComposablePartCatalog catalog, ExportProvider host)
+    {
+      DiscoverParts(() => new CompositionInfo(catalog, host));
+    }
+
+    private static void DiscoverParts(Func<CompositionInfo> getCompositionInfo)
+    {
+      try
+      {
+        using (var stringWriter = new StringWriter())
+        {
+          CompositionInfoTextFormatter.Write(
+              getCompositionInfo(),
+              stringWriter);
+          Approvals.Verify(stringWriter.ToString());
+        }
+      }
+      catch (ReflectionTypeLoadException ex)
+      {
+        Array.ForEach(
+            ex.LoaderExceptions,
+            lex => Console.WriteLine(lex.ToString()));
+        throw;
+      }
+    }
   }
 }
