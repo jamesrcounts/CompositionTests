@@ -1,4 +1,5 @@
 *.received.txt
+NuGet.exe
 
 #################
 ## Eclipse

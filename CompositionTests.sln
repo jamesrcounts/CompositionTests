@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionTests", "CompositionTests.csproj", "{BC740D69-BE08-40F7-9A9D-E35E1F3878B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionTests", "CompositionTests\CompositionTests.csproj", "{BC740D69-BE08-40F7-9A9D-E35E1F3878B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionTests.Tests", "..\CompositionTests.Tests\CompositionTests.Tests.csproj", "{61B78736-929E-47AD-8739-296902C58B3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionTests.Tests", "CompositionTests.Tests\CompositionTests.Tests.csproj", "{61B78736-929E-47AD-8739-296902C58B3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB35BD93-53A2-4E1A-9CE9-F3FD6CCAA2CC}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F8147E79-ADDB-4041-9866-61019317752D}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
