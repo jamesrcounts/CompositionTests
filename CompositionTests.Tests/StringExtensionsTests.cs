@@ -17,11 +17,25 @@ namespace CompositionTests.Tests
         }
 
         [TestMethod]
+        public void ReturnNullForNullOnScrubPublicKeyToken()
+        {
+            string signature = null;
+            Assert.IsNull(signature.ScrubPublicKeyToken());
+        }
+
+        [TestMethod]
         public void TestScrubVersionNumber()
         {
             Assert.AreEqual(
                 "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")",
                 assemblyCatalogSignature.ScrubVersionNumber());
+        }
+
+        [TestMethod]
+        public void ReturnNullForNullOnScrubVersionNumber()
+        {
+            string signature = null;
+            Assert.IsNull(signature.ScrubVersionNumber());
         }
     }
 }
