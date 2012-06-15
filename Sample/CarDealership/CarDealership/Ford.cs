@@ -1,12 +1,26 @@
 using System;
+using System.ComponentModel.Composition;
 
 namespace CarDealership
 {
-  public class Ford : Car
-  {
-    public override void Drive()
+    public interface IMotor
     {
-      throw new NotImplementedException();
     }
-  }
+
+    [Export(typeof(Car))]
+    public class Ford : Car
+    {
+        [Import]
+        public IMotor Motor { get; set; }
+
+        public override void Drive()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    [Export(typeof(IMotor))]
+    public class V8Motor : IMotor
+    {
+    }
 }

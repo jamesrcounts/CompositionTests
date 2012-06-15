@@ -3,13 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CarDealership.Tests
 {
-  [TestClass]
-  public class IntegrationTest
-  {
-    [TestMethod]
-    public void DiscoverParts()
+    [TestClass]
+    public class IntegrationTest
     {
-      Composition.DiscoverParts(Program.Catalog, StringExtensions.ScrubVersionNumber);
+        [TestMethod]
+        public void VerifyComposition()
+        {
+            MefComposition.VerifyAssemblyCatalog(Program.Catalog);
+        }
     }
-  }
 }

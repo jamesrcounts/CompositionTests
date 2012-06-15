@@ -1,5 +1,7 @@
 *.received.txt
 [nN]u[gG]et.exe
+*.ncrunchsolution
+*.ncrunchproject
 
 #################
 ## Eclipse

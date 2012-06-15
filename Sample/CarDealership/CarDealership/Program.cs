@@ -4,20 +4,20 @@ using System.Reflection;
 
 namespace CarDealership
 {
-  public class Program
-  {
-    static Program()
+    public class Program
     {
-      Catalog = new AssemblyCatalog(Assembly.GetAssembly(typeof(Program)));
-      Host = new CompositionContainer(Catalog);
+        static Program()
+        {
+            Catalog = new AssemblyCatalog(Assembly.GetAssembly(typeof(Program)));
+            Host = new CompositionContainer(Catalog);
+        }
+
+        public static AssemblyCatalog Catalog { get; private set; }
+
+        public static ExportProvider Host { get; private set; }
+
+        private static void Main(string[] args)
+        {
+        }
     }
-
-    public static ComposablePartCatalog Catalog { get; private set; }
-
-    public static ExportProvider Host { get; private set; }
-
-    private static void Main(string[] args)
-    {
-    }
-  }
 }

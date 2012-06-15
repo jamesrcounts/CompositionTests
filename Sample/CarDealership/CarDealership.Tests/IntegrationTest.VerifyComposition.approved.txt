@@ -1,0 +1,32 @@
+[Part] CarDealership.Dealership from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+  [Export] CarDealership.Dealership (ContractName="CarDealership.Dealership")
+  [Import] CarDealership.Dealership.Cars (ContractName="CarDealership.Car")
+    [SatisfiedBy] CarDealership.Ford (ContractName="CarDealership.Car") from: CarDealership.Ford from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+    [SatisfiedBy] CarDealership.Car (ContractName="CarDealership.Car") from: CarDealership.Ford from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+    [SatisfiedBy] CarDealership.Car (ContractName="CarDealership.Car") from: CarDealership.Honda from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+    [Unsuitable] CarDealership.Car (ContractName="CarDealership.Car") from: CarDealership.Mazda from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+
+[Part] CarDealership.Ford from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+  [Export] CarDealership.Car (ContractName="CarDealership.Car")
+  [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
+    [SatisfiedBy] CarDealership.V8Motor (ContractName="CarDealership.IMotor") from: CarDealership.V8Motor from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+
+[Part] CarDealership.Honda from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+  [Export] CarDealership.Car (ContractName="CarDealership.Car")
+
+[Part] CarDealership.Mazda from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+  [Primary Rejection]
+  [Export] CarDealership.Car (ContractName="CarDealership.Car")
+  [Import] CarDealership.Mazda.Engine (ContractName="CarDealership.Motor")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    CarDealership.Motor
+    RequiredTypeIdentity    CarDealership.Motor
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] CarDealership.V8Motor from: AssemblyCatalog (Assembly="CarDealership, Culture=neutral")
+  [Export] CarDealership.V8Motor (ContractName="CarDealership.IMotor")
+
