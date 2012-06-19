@@ -72,6 +72,7 @@ namespace CompositionTests.Tests
         [Export]
         public class TestingPart
         {
+            [Import]
             public int MyProperty { get; set; }
         }
     }

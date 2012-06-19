@@ -5,14 +5,14 @@ namespace CompositionTests
 {
     public static class StringExtensions
     {
-        public static string ScrubVersionNumber(this string value)
+        public static string NormalizeLineFeeds(this string value)
         {
-            if (value == null)
-            {
-                return null;
-            }
+            return new Regex(@"\r\n?|\n").Replace(value, Environment.NewLine);
+        }
 
-            return new Regex(@",\sVersion=[\d.]+").Replace(value, string.Empty);
+        public static string NormalizeWhitespace(this string value)
+        {
+            return value.Replace("\t", new string(' ', 4));
         }
 
         public static string ScrubPublicKeyToken(this string value)
@@ -23,6 +23,16 @@ namespace CompositionTests
             }
 
             return new Regex(@",\sPublicKeyToken=[\dabcdefnul]+").Replace(value, string.Empty);
+        }
+
+        public static string ScrubVersionNumber(this string value)
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            return new Regex(@",\sVersion=[\d.]+").Replace(value, string.Empty);
         }
     }
 }

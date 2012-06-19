@@ -27,7 +27,9 @@ namespace CompositionTests
                 using (var stringWriter = new StringWriter())
                 {
                     OrderedCompositionInfoTextFormatter.Write(getCompositionInfo(), stringWriter);
-                    var result = stringWriter.ToString();
+                    var result = stringWriter.ToString()
+                        .NormalizeLineFeeds()
+                        .NormalizeWhitespace();
                     foreach (var scrubber in scrubbers)
                     {
                         result = scrubber(result);
