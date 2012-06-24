@@ -1,0 +1,373 @@
+[Part] NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Export] NuGet.CommandManager (ContractName="NuGet.ICommandManager")
+
+[Part] NuGet.Commands.ConfigCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.ConfigCommand..ctor (Parameter="settings", ContractName="NuGet.ISettings")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.ISettings
+    RequiredTypeIdentity    NuGet.ISettings
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.DeleteCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.DeleteCommand..ctor (Parameter="packageSourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.DeleteCommand..ctor (Parameter="settings", ContractName="NuGet.ISettings")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.ISettings
+    RequiredTypeIdentity    NuGet.ISettings
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.HelpCommand..ctor (Parameter="commandManager", ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+
+[Part] NuGet.Commands.InstallCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.InstallCommand..ctor (Parameter="packageRepositoryFactory", ContractName="NuGet.IPackageRepositoryFactory")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageRepositoryFactory
+    RequiredTypeIdentity    NuGet.IPackageRepositoryFactory
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.InstallCommand..ctor (Parameter="sourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.ListCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.ListCommand..ctor (Parameter="packageRepositoryFactory", ContractName="NuGet.IPackageRepositoryFactory")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageRepositoryFactory
+    RequiredTypeIdentity    NuGet.IPackageRepositoryFactory
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.ListCommand..ctor (Parameter="sourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.PackCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.PackCommand.Rules (ContractName="NuGet.IPackageRule")
+    [SatisfiedBy] NuGet.DefaultPackageRules (ContractName="NuGet.IPackageRule") from: NuGet.DefaultPackageRules from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+
+[Part] NuGet.Commands.PublishCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+
+[Part] NuGet.Commands.PushCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.PushCommand..ctor (Parameter="packageSourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.PushCommand..ctor (Parameter="settings", ContractName="NuGet.ISettings")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.ISettings
+    RequiredTypeIdentity    NuGet.ISettings
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.SetApiKeyCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.SetApiKeyCommand..ctor (Parameter="packageSourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.SetApiKeyCommand..ctor (Parameter="settings", ContractName="NuGet.ISettings")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.ISettings
+    RequiredTypeIdentity    NuGet.ISettings
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.SourcesCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.SourcesCommand..ctor (Parameter="sourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.Commands.SpecCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+
+[Part] NuGet.Commands.UpdateCommand from: DirectoryCatalog (Path="...\")
+  [Primary Rejection]
+  [Export] NuGet.ICommand (ContractName="NuGet.ICommand")
+  [Import] NuGet.Commands.Command.Console (ContractName="NuGet.Common.IConsole")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Common.IConsole
+    RequiredTypeIdentity    NuGet.Common.IConsole
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.Command.HelpCommand (ContractName="NuGet.Commands.HelpCommand")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.Commands.HelpCommand
+    RequiredTypeIdentity    NuGet.Commands.HelpCommand
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Unsuitable] NuGet.Commands.HelpCommand (ContractName="NuGet.Commands.HelpCommand") from: NuGet.Commands.HelpCommand from: DirectoryCatalog (Path="...\")
+      [Because] PartDefinitionIsRejected, The part providing the export is rejected because of other issues.
+  [Import] NuGet.Commands.Command.Manager (ContractName="NuGet.ICommandManager")
+    [SatisfiedBy] NuGet.CommandManager (ContractName="NuGet.ICommandManager") from: NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+  [Import] NuGet.Commands.UpdateCommand..ctor (Parameter="repositoryFactory", ContractName="NuGet.IPackageRepositoryFactory")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageRepositoryFactory
+    RequiredTypeIdentity    NuGet.IPackageRepositoryFactory
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+  [Import] NuGet.Commands.UpdateCommand..ctor (Parameter="sourceProvider", ContractName="NuGet.IPackageSourceProvider")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    NuGet.IPackageSourceProvider
+    RequiredTypeIdentity    NuGet.IPackageSourceProvider
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+
+[Part] NuGet.DefaultPackageRules from: DirectoryCatalog (Path="...\")
+  [Export] NuGet.DefaultPackageRules (ContractName="NuGet.IPackageRule")
+

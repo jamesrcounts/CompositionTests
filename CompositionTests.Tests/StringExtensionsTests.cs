@@ -1,4 +1,3 @@
-using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CompositionTests.Tests
@@ -9,11 +8,17 @@ namespace CompositionTests.Tests
         private const string assemblyCatalogSignature = "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")";
 
         [TestMethod]
-        public void TestScrubPublicKeyToken()
+        public void ReturnNullForNullOnNormalizeIndents()
         {
-            Assert.AreEqual(
-                "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral\")",
-                assemblyCatalogSignature.ScrubPublicKeyToken());
+            string text = null;
+            Assert.IsNull(text.NormalizeIndentation());
+        }
+
+        [TestMethod]
+        public void ReturnNullForNullOnNormalizeLineEndings()
+        {
+            string text = null;
+            Assert.IsNull(text.NormalizeLineEndings());
         }
 
         [TestMethod]
@@ -24,18 +29,26 @@ namespace CompositionTests.Tests
         }
 
         [TestMethod]
+        public void ReturnNullForNullOnScrubVersionNumber()
+        {
+            string signature = null;
+            Assert.IsNull(signature.ScrubVersionNumber());
+        }
+
+        [TestMethod]
+        public void TestScrubPublicKeyToken()
+        {
+            Assert.AreEqual(
+                "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral\")",
+                assemblyCatalogSignature.ScrubPublicKeyToken());
+        }
+
+        [TestMethod]
         public void TestScrubVersionNumber()
         {
             Assert.AreEqual(
                 "AssemblyCatalog (Assembly=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\")",
                 assemblyCatalogSignature.ScrubVersionNumber());
-        }
-
-        [TestMethod]
-        public void ReturnNullForNullOnScrubVersionNumber()
-        {
-            string signature = null;
-            Assert.IsNull(signature.ScrubVersionNumber());
         }
     }
 }

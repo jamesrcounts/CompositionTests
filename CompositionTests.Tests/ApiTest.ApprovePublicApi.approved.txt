@@ -1,0 +1,41 @@
+public class Composition
+{
+    public Composition() { }
+    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }
+    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.ComponentModel.Composition.Hosting.ExportProvider host, System.Func<string, string>[] scrubbers) { }
+    public void DiscoverParts(System.Func<Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo> getCompositionInfo, System.Func<string, string>[] scrubbers) { }
+}
+
+public class MefComposition
+{
+    public MefComposition() { }
+    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }
+    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.ComponentModel.Composition.Hosting.ExportProvider host, System.Func<string, string>[] scrubbers) { }
+    public void DiscoverParts(System.Func<Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo> getCompositionInfo, System.Func<string, string>[] scrubbers) { }
+    public void VerifyAggregateCatalog(System.ComponentModel.Composition.Hosting.AggregateCatalog catalog) { }
+    public void VerifyAssemblyCatalog(System.Reflection.Assembly assembly) { }
+    public void VerifyAssemblyCatalog(string assemblyPath) { }
+    public void VerifyAssemblyCatalog(System.ComponentModel.Composition.Hosting.AssemblyCatalog assemblyCatalog) { }
+    public void VerifyCompositionInfo(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }
+    public void VerifyCompositionInfo(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.ComponentModel.Composition.Hosting.ExportProvider host, System.Func<string, string>[] scrubbers) { }
+    public void VerifyCompositionInfo(System.Func<Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo> getCompositionInfo, System.Func<string, string>[] scrubbers) { }
+    public void VerifyDirectoryCatalog(string path) { }
+    public void VerifyDirectoryCatalog(string path, string searchPattern) { }
+    public void VerifyDirectoryCatalog(System.ComponentModel.Composition.Hosting.DirectoryCatalog directoryCatalog) { }
+    public void VerifyTypeCatalog(System.Type[] types) { }
+    public void VerifyTypeCatalog(System.ComponentModel.Composition.Hosting.TypeCatalog typeCatalog) { }
+}
+
+public class OrderedCompositionInfoTextFormatter
+{
+    public string Format(Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo info) { }
+    public void Write(Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo info, System.IO.TextWriter output) { }
+}
+
+public class StringExtensions
+{
+    public string NormalizeIndentation(string value) { }
+    public string NormalizeLineEndings(string value) { }
+    public string ScrubPublicKeyToken(string value) { }
+    public string ScrubVersionNumber(string value) { }
+}

@@ -5,14 +5,24 @@ namespace CompositionTests
 {
     public static class StringExtensions
     {
-        public static string NormalizeLineFeeds(this string value)
+        public static string NormalizeIndentation(this string value)
         {
-            return new Regex(@"\r\n?|\n").Replace(value, Environment.NewLine);
+            if (value == null)
+            {
+                return null;
+            }
+
+            return value.Replace("\t", new string(' ', 4));
         }
 
-        public static string NormalizeWhitespace(this string value)
+        public static string NormalizeLineEndings(this string value)
         {
-            return value.Replace("\t", new string(' ', 4));
+            if (value == null)
+            {
+                return null;
+            }
+
+            return new Regex(@"\r\n?|\n").Replace(value, Environment.NewLine);
         }
 
         public static string ScrubPublicKeyToken(this string value)

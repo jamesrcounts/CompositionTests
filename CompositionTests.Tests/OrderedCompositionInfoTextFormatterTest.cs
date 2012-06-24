@@ -29,17 +29,26 @@ namespace CompositionTests.Tests
     [TestClass]
     public class OrderedCompositionInfoTextFormatterTest
     {
+        private static CompositionInfo GetInfo()
+        {
+            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            return new CompositionInfo(catalog, new CompositionContainer(catalog));
+        }
+
         [TestMethod]
         public void ApproveFormattedText()
         {
-            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            var container = new CompositionContainer(catalog);
-            var info = new CompositionInfo(catalog, container);
             using (var output = new StringWriter())
             {
-                OrderedCompositionInfoTextFormatter.Write(info, output);
+                OrderedCompositionInfoTextFormatter.Write(GetInfo(), output);
                 Approvals.Verify(output);
             }
+        }
+
+        [TestMethod]
+        public void TestFormat()
+        {
+            Approvals.Verify(OrderedCompositionInfoTextFormatter.Format(GetInfo()));
         }
     }
 }

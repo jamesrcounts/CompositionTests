@@ -6,6 +6,15 @@ namespace CompositionTests
 {
     public static class OrderedCompositionInfoTextFormatter
     {
+        public static string Format(CompositionInfo info)
+        {
+            using (var output = new StringWriter())
+            {
+                Write(info, output);
+                return output.ToString();
+            }
+        }
+
         public static void Write(CompositionInfo info, TextWriter output)
         {
             var partDefinitions = info.PartDefinitions;

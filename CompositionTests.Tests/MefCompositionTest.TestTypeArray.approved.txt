@@ -1,13 +1,13 @@
-[Part] CompositionTests.Tests.FileRemover from: AssemblyCatalog (Assembly="CompositionTests.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+[Part] CompositionTests.Tests.FileRemover from: TypeCatalog (Types='CompositionTests.Tests.FileRemover, CompositionTests.Tests.MefCompositionTest+TestingPart').
   [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
 
-[Part] CompositionTests.Tests.MefCompositionTest+TestingPart from: AssemblyCatalog (Assembly="CompositionTests.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+[Part] CompositionTests.Tests.MefCompositionTest+TestingPart from: TypeCatalog (Types='CompositionTests.Tests.FileRemover, CompositionTests.Tests.MefCompositionTest+TestingPart').
   [Primary Rejection]
   [Export] CompositionTests.Tests.MefCompositionTest+TestingPart (ContractName="CompositionTests.Tests.MefCompositionTest+TestingPart")
   [Import] CompositionTests.Tests.MefCompositionTest+TestingPart.MyProperty (ContractName="System.Int32")
     [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
-	ContractName	System.Int32
-	RequiredTypeIdentity	System.Int32
+    ContractName    System.Int32
+    RequiredTypeIdentity    System.Int32
    at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
    at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
    at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
