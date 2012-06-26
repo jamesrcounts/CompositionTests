@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailApp", "MailApp\MailApp.csproj", "{34B54625-7E1A-4235-B46B-87F03DA05F93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailApp.Tests", "MailApp.Tests\MailApp.Tests.csproj", "{044F156B-F3D0-4CEC-83B4-66DB9818670F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D14565CB-7B52-491E-81A8-A37BDA00DC3F}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		MailApp.vsmdi = MailApp.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{069CB0A0-7BA6-4161-B2DF-D25DCD545E35}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MailApp.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34B54625-7E1A-4235-B46B-87F03DA05F93}.Debug|x86.ActiveCfg = Debug|x86
+		{34B54625-7E1A-4235-B46B-87F03DA05F93}.Debug|x86.Build.0 = Debug|x86
+		{34B54625-7E1A-4235-B46B-87F03DA05F93}.Release|x86.ActiveCfg = Release|x86
+		{34B54625-7E1A-4235-B46B-87F03DA05F93}.Release|x86.Build.0 = Release|x86
+		{044F156B-F3D0-4CEC-83B4-66DB9818670F}.Debug|x86.ActiveCfg = Debug|x86
+		{044F156B-F3D0-4CEC-83B4-66DB9818670F}.Debug|x86.Build.0 = Debug|x86
+		{044F156B-F3D0-4CEC-83B4-66DB9818670F}.Release|x86.ActiveCfg = Release|x86
+		{044F156B-F3D0-4CEC-83B4-66DB9818670F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

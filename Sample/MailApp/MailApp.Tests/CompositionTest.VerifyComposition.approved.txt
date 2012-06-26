@@ -1,0 +1,10 @@
+[Part] MailApp.BasicMailSender from: TypeCatalog (Types='MailApp.BasicMailSender, MailApp.DefaultPort').
+  [Export] MailApp.BasicMailSender (ContractName="MailApp.BasicMailSender")
+  [Import] MailApp.BasicMailSender..ctor (Parameter="host", ContractName="MailApp.SmtpHost")
+    [SatisfiedBy] MailApp.Tests.CompositionTest+TestingSmtpHost (ContractName="MailApp.SmtpHost") from: MailApp.Tests.CompositionTest+TestingSmtpHost
+  [Import] MailApp.BasicMailSender..ctor (Parameter="port", ContractName="MailApp.Port")
+    [SatisfiedBy] MailApp.DefaultPort (ContractName="MailApp.Port") from: MailApp.DefaultPort from: TypeCatalog (Types='MailApp.BasicMailSender, MailApp.DefaultPort').
+
+[Part] MailApp.DefaultPort from: TypeCatalog (Types='MailApp.BasicMailSender, MailApp.DefaultPort').
+  [Export] MailApp.DefaultPort (ContractName="MailApp.Port")
+
