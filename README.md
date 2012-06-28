@@ -18,8 +18,8 @@ Say you have an attributed MEF part:
 
 You could use the MEFX Command Line tool to examine the type and you would expect output like this:
 
-	[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
-	  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+    [Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
+      [Export] CarDealership.Ford (ContractName="CarDealership.Car")
 	
 Let's assume that this is correct, and that someday down the line a junior programmer decides there should be an `ICar` interface and changes your export to this:
 
@@ -28,20 +28,20 @@ Let's assume that this is correct, and that someday down the line a junior progr
 
 Now MEF can't satisfy any `Car` imports you might have.  MEFX can catch this type of breakage (and much more) but you have to run it yourself.  Wouldn't it be nice to run an automated check that would catch this scenario? `CompositionTests` exists to fill that gap:
 
-	using ApprovalTests.Reporters;
-	using CompositionTests;
-	
-	[TestClass]
-	[UseReporter(typeof(DiffReporter))]
-	public class IntegrationTest
-	{
-	    [TestMethod]
-	    public void VerifyComposition()
-	    {
-	        var catalog = new TypeCatalog(typeof(Ford));
-	        MefComposition.VerifyCompositionInfo(catalog);
-	    }
-	}
+    using ApprovalTests.Reporters;
+    using CompositionTests;
+
+    [TestClass]
+    [UseReporter(typeof(DiffReporter))]
+    public class IntegrationTest
+    {
+        [TestMethod]
+        public void VerifyComposition()
+        {
+            var catalog = new TypeCatalog(typeof(Ford));
+            MefComposition.VerifyCompositionInfo(catalog);
+        }
+    }
 
 This test will leverage the core library behind MEFX to produce the same output you would see on the command line, then use [ApprovalTests](http://www.approvaltests.com) to process the output and ensure that it doesn't change without your approval.  You can use CompositionTests with 4 of the 5 MEF catalog types (`DeploymentCatalog` is not supported at this time.)  And because we're automating MEFX, the test will not only show you the contents of the catalog, but will perform static analysis on the catalog contents, tell you which parts will be rejected, and idenitify possible rejection root causes.
 
@@ -55,16 +55,16 @@ Lets say our `Ford : Car` needs a motor:
 
 If our catalog doesn't have motor, our test will let us know:
 
-	[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
-	  [Primary Rejection]
-	  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
-	  [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
-	    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
-	    ContractName    CarDealership.IMotor
-	    RequiredTypeIdentity    CarDealership.IMotor
-	   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
-	   at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
-	   at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+    [Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
+      [Primary Rejection]
+      [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+      [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
+        [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+        ContractName    CarDealership.IMotor
+        RequiredTypeIdentity    CarDealership.IMotor
+        at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+        at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+        at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
 
 Then we know that we need to add a `Motor` part to satisfy the `Car`
 
@@ -77,25 +77,25 @@ Then we know that we need to add a `Motor` part to satisfy the `Car`
 
 And now our composition is happy, we can approve the new output to ensure that no one removes the `IMotor` to make our `Car` unusable.
 
-	[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
-	  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
-	  [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
-	    [SatisfiedBy] CarDealership.V8Motor (ContractName="CarDealership.IMotor") from: CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
-	
-	[Part] CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
-	  [Export] CarDealership.V8Motor (ContractName="CarDealership.IMotor")
+    [Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+      [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+      [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
+         [SatisfiedBy] CarDealership.V8Motor (ContractName="CarDealership.IMotor") from: CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+
+    [Part] CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+      [Export] CarDealership.V8Motor (ContractName="CarDealership.IMotor")
 	
 But instead of building your catalog in your test, it would be a better idea to define it in your production code:
 	
-	public class Program
-	{
-	    static Program()
-	    {
-	        Catalog = new TypeCatalog(typeof(Ford), typeof(V8Motor));
-	        Host = new CompositionContainer(Catalog);
-	    }
-	
-	    public static TypeCatalog Catalog { get; private set; }
+    public class Program
+    {
+        static Program()
+        {
+            Catalog = new TypeCatalog(typeof(Ford), typeof(V8Motor));
+            Host = new CompositionContainer(Catalog);
+        }
+
+        public static TypeCatalog Catalog { get; private set; }
 
 And share that catalog with the test:
 
@@ -128,9 +128,11 @@ More Info
 
 ####Related Blog Posts:
 
-[Stop Guessing About MEF Composition and Start Testing](http://ihadthisideaonce.wordpress.com/2012/01/31/stop-guessing-about-mef-composition-and-start-testing/)
+[Stop Guessing About MEF Composition and Start Testing](http://ihadthisideaonce.com/2012/01/31/stop-guessing-about-mef-composition-and-start-testing/)
 
-[MEF Composition Tests, Redux](http://ihadthisideaonce.wordpress.com/2012/06/12/mef-composition-tests-redux/)
+[MEF Composition Tests, Redux](http://ihadthisideaonce.com/2012/06/12/mef-composition-tests-redux/)
+
+[When is the ExportProvider Interesting?](http://ihadthisideaonce.com/2012/06/26/when-is-the-exportprovider-interesting/)
 
 Available on NuGet
 ---
