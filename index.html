@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="CompositionTests : From &quot;MEF, WTF!?&quot; to &quot;MEF, FTW!&quot;" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>CompositionTests</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jamesrcounts/CompositionTests">View on GitHub</a>
+
+          <h1 id="project_title">CompositionTests</h1>
+          <h2 id="project_tagline">From &quot;MEF, WTF!?&quot; to &quot;MEF, FTW!&quot;</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jamesrcounts/CompositionTests/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jamesrcounts/CompositionTests/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>CompositionTests</h1>
+
+<p>Uses ApprovalTests and MEFX to provide a simple interface for executing MEF Composition tests.</p>
+
+<h2>What can it be used for?</h2>
+
+<p>When you know what your composition should look like, you can create automated integration tests that lock down the composition.</p>
+
+<h2>Examples</h2>
+
+<p>Say you have an attributed MEF part:</p>
+
+<pre><code>[Export(typeof(Car))]
+public class Ford : Car
+</code></pre>
+
+<p>You could use the MEFX Command Line tool to examine the type and you would expect output like this:</p>
+
+<pre><code>[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
+  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+</code></pre>
+
+<p>Let's assume that this is correct, and that someday down the line a junior programmer decides there should be an <code>ICar</code> interface and changes your export to this:</p>
+
+<pre><code>[Export(typeof(ICar))]
+public class Ford : Car, ICar
+</code></pre>
+
+<p>Now MEF can't satisfy any <code>Car</code> imports you might have.  MEFX can catch this type of breakage (and much more) but you have to run it yourself.  Wouldn't it be nice to run an automated check that would catch this scenario? <code>CompositionTests</code> exists to fill that gap:</p>
+
+<pre><code>using ApprovalTests.Reporters;
+using CompositionTests;
+
+[TestClass]
+[UseReporter(typeof(DiffReporter))]
+public class IntegrationTest
+{
+    [TestMethod]
+    public void VerifyComposition()
+    {
+        var catalog = new TypeCatalog(typeof(Ford));
+        MefComposition.VerifyCompositionInfo(catalog);
+    }
+}
+</code></pre>
+
+<p>This test will leverage the core library behind MEFX to produce the same output you would see on the command line, then use <a href="http://www.approvaltests.com">ApprovalTests</a> to process the output and ensure that it doesn't change without your approval.  You can use CompositionTests with 4 of the 5 MEF catalog types (<code>DeploymentCatalog</code> is not supported at this time.)  And because we're automating MEFX, the test will not only show you the contents of the catalog, but will perform static analysis on the catalog contents, tell you which parts will be rejected, and idenitify possible rejection root causes.</p>
+
+<p>Lets say our <code>Ford : Car</code> needs a motor:</p>
+
+<pre><code>[Export(typeof(Car))]
+public class Ford : Car
+{
+    [Import]
+    public IMotor Motor { get; set; } 
+</code></pre>
+
+<p>If our catalog doesn't have motor, our test will let us know:</p>
+
+<pre><code>[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford').
+  [Primary Rejection]
+  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+  [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
+    [Exception] System.ComponentModel.Composition.ImportCardinalityMismatchException: No exports were found that match the constraint: 
+    ContractName    CarDealership.IMotor
+    RequiredTypeIdentity    CarDealership.IMotor
+    at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+    at System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition)
+    at Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo.AnalyzeImportDefinition(ExportProvider host, IEnumerable`1 availableParts, ImportDefinition id)
+</code></pre>
+
+<p>Then we know that we need to add a <code>Motor</code> part to satisfy the <code>Car</code></p>
+
+<pre><code>[TestMethod]
+public void VerifyComposition()
+{
+    var catalog = new TypeCatalog(typeof(Ford), typeof(V8Motor));
+    MefComposition.VerifyCompositionInfo(catalog);
+}
+</code></pre>
+
+<p>And now our composition is happy, we can approve the new output to ensure that no one removes the <code>IMotor</code> to make our <code>Car</code> unusable.</p>
+
+<pre><code>[Part] CarDealership.Ford from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+  [Export] CarDealership.Ford (ContractName="CarDealership.Car")
+  [Import] CarDealership.Ford.Motor (ContractName="CarDealership.IMotor")
+     [SatisfiedBy] CarDealership.V8Motor (ContractName="CarDealership.IMotor") from: CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+
+[Part] CarDealership.V8Motor from: TypeCatalog (Types='CarDealership.Ford, CarDealership.V8Motor').
+  [Export] CarDealership.V8Motor (ContractName="CarDealership.IMotor")
+</code></pre>
+
+<p>But instead of building your catalog in your test, it would be a better idea to define it in your production code:</p>
+
+<pre><code>public class Program
+{
+    static Program()
+    {
+        Catalog = new TypeCatalog(typeof(Ford), typeof(V8Motor));
+        Host = new CompositionContainer(Catalog);
+    }
+
+    public static TypeCatalog Catalog { get; private set; }
+</code></pre>
+
+<p>And share that catalog with the test:</p>
+
+<pre><code>[TestMethod]
+public void VerifyComposition()
+{
+    MefComposition.VerifyCompositionInfo(Program.Catalog);
+}
+</code></pre>
+
+<p>But sometimes MEFX puts extra information into the output that will break your ApprovalTest, even though nothing has actually changed that effects compostion (like version numbers and file paths).  So CompositionTests provides specific methods per catalog that can scrub common problem areas for you:</p>
+
+<pre><code>[TestMethod]
+public void VerifyComposition()
+{
+    MefComposition.VerifyTypeCatalog(Program.Catalog);
+}
+</code></pre>
+
+<p>Or you can define any custom <code>Func&lt;string, string&gt;</code> to manipulate the output before it reaches ApprovalTests:</p>
+
+<pre><code>[TestMethod]
+public void VerifyComposition()
+{
+    MefComposition.VerifyTypeCatalog(Program.Catalog, s =&gt; RemoveTypeNames(s));
+}
+</code></pre>
+
+<p>If you need to use an <code>ExportProvider</code> other than <code>CompositionContainer</code>, you can do that too, just check the overloads of <code>VerifyCompositionInfo</code> for one that works for you, and see the test project for more examples.</p>
+
+<h2>More Info</h2>
+
+<h4>Related Blog Posts:</h4>
+
+<p><a href="http://ihadthisideaonce.com/2012/01/31/stop-guessing-about-mef-composition-and-start-testing/">Stop Guessing About MEF Composition and Start Testing</a></p>
+
+<p><a href="http://ihadthisideaonce.com/2012/06/12/mef-composition-tests-redux/">MEF Composition Tests, Redux</a></p>
+
+<p><a href="http://ihadthisideaonce.com/2012/06/26/when-is-the-exportprovider-interesting/">When is the ExportProvider Interesting?</a></p>
+
+<h2>Available on NuGet</h2>
+
+<p><a href="https://nuget.org/packages/CompositionTests">Install-Package CompositionTests</a></p>
+
+<h2>License</h2>
+
+<p><a href="https://github.com/jamesrcounts/CompositionTests/blob/master/LICENSE.md">MIT License</a></p>
+
+<h2>Building the source</h2>
+
+<p>Windows</p>
+
+<p>After cloning the repository, run msbuild, or open in Visual Studio and select "Build Solution" from the Build menu.</p>
+
+<h2>Public API</h2>
+
+<p>See <a href="https://github.com/jamesrcounts/CompositionTests/blob/master/CompositionTests.Tests/ApiTest.ApprovePublicApi.approved.txt">ApiTest.ApprovePublicApi.approved.txt</a> in the <a href="https://github.com/jamesrcounts/CompositionTests/tree/master/CompositionTests.Tests">CompositionTests.Tests</a> directory.</p>
+
+<h2>Questions?</h2>
+
+<p>twitter: <a href="https://twitter.com/#!/jamesrcounts">@jamesrcounts</a> or #CompositionTests</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">CompositionTests maintained by <a href="https://github.com/jamesrcounts">jamesrcounts</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-33029397-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
