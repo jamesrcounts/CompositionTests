@@ -33,7 +33,7 @@ namespace ApiApprover
                 {
                     var writer = new StringWriter();
                     var genClass = CreateClassDeclaration(publicType);
-                    foreach (var memberInfo in publicType.GetMembers().Where(m => !IsDotNetTypeMember(m)).OrderBy(m => m.Name))
+                    foreach (var memberInfo in publicType.GetMembers().Where(m => !IsDotNetTypeMember(m)).OrderBy(GetMemberKey))
                     {
                         AddMemberToClassDefinition(genClass, memberInfo);
                     }
@@ -44,6 +44,25 @@ namespace ApiApprover
             }
             var publicApi = publicApiBuilder.ToString();
             return publicApi.Trim();
+        }
+             
+        public static string GetMemberKey(MemberInfo member)
+        {
+            string key = member.Name;
+            var memberMethod = member as MethodInfo;
+            if (memberMethod == null)
+            {
+                return key;
+            }
+
+            var parameters = memberMethod.GetParameters();
+            key += parameters.Length;
+            foreach (var parameter in parameters)
+            {
+                key += parameter.Name;
+            }
+
+            return key;
         }
 
         // ReSharper disable BitwiseOperatorOnEnumWihtoutFlags

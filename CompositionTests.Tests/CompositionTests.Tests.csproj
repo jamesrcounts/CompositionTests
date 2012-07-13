@@ -35,11 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApprovalTests, Version=1.18.4499.16365, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalTests.1.9\lib\ApprovalTests.dll</HintPath>
+    <Reference Include="ApprovalTests, Version=1.20.4603.28088, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ApprovalTests.2.0\lib\ApprovalTests.dll</HintPath>
     </Reference>
-    <Reference Include="ApprovalUtilities, Version=1.18.4483.627, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalTests.1.9\lib\ApprovalUtilities.dll</HintPath>
+    <Reference Include="ApprovalUtilities, Version=1.20.4603.28088, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ApprovalTests.2.0\lib\ApprovalUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ComponentModel.Composition.Diagnostics, Version=0.4.3555.17520, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MEFX.Core.Unofficial.0.4\lib\Microsoft.ComponentModel.Composition.Diagnostics.dll</HintPath>

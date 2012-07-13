@@ -16,11 +16,7 @@ namespace CompositionTests.Tests
         [TestMethod]
         public void TestAggregateCatalog()
         {
-            var catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new TypeCatalog(typeof(TestingPart)));
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            catalog.Catalogs.Add(new DirectoryCatalog(GetDirectoryCatalogPath(), "*.exe"));
-            MefComposition.VerifyAggregateCatalog(catalog);
+            MefComposition.VerifyAggregateCatalog(GetAggregateCatalog());
         }
 
         [TestMethod]
@@ -32,7 +28,7 @@ namespace CompositionTests.Tests
         [TestMethod]
         public void TestAssemblyCatalog()
         {
-            MefComposition.VerifyAssemblyCatalog(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            MefComposition.VerifyAssemblyCatalog(GetAssemblyCatalog());
         }
 
         [TestMethod]
@@ -51,10 +47,17 @@ namespace CompositionTests.Tests
         }
 
         [TestMethod]
+        public void TestGenericWithComposablePartCatalog()
+        {
+            ComposablePartCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            TestGeneric(catalog);
+        }
+
+        [TestMethod]
         public void TestComposablePartCatalogAndExportProvider()
         {
-            AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            CompositionContainer compositionContainer = new CompositionContainer(catalog);
+            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            var compositionContainer = new CompositionContainer(catalog);
             MefComposition.VerifyCompositionInfo(
                 catalog,
                 compositionContainer,
@@ -76,7 +79,7 @@ namespace CompositionTests.Tests
         [TestMethod]
         public void TestDirectoryCatalog()
         {
-            MefComposition.VerifyDirectoryCatalog(new DirectoryCatalog(GetDirectoryCatalogPath()));
+            MefComposition.VerifyDirectoryCatalog(GetDirectoryCatalog());
         }
 
         [TestMethod]
@@ -89,6 +92,30 @@ namespace CompositionTests.Tests
         public void TestDirectoryPathAndSearchPattern()
         {
             MefComposition.VerifyDirectoryCatalog(GetDirectoryCatalogPath(), "*.exe");
+        }
+
+        [TestMethod]
+        public void TestGenericWithAggregateCatalog()
+        {
+            TestGeneric(GetAggregateCatalog());
+        }
+
+        [TestMethod]
+        public void TestGenericWithAssemblyCatalog()
+        {
+            TestGeneric(GetAssemblyCatalog());
+        }
+
+        [TestMethod]
+        public void TestGenericWithDirectoryCatalog()
+        {
+            TestGeneric(GetDirectoryCatalog());
+        }
+
+        [TestMethod]
+        public void TestGenericWithTypeCatalog()
+        {
+            TestGeneric(GetTypeCatalog());
         }
 
         [TestMethod]
@@ -125,12 +152,41 @@ namespace CompositionTests.Tests
         [TestMethod]
         public void TestTypeCatalog()
         {
-            MefComposition.VerifyTypeCatalog(new TypeCatalog(typeof(FileRemover)));
+            MefComposition.VerifyTypeCatalog(GetTypeCatalog());
+        }
+
+        private static AggregateCatalog GetAggregateCatalog()
+        {
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new TypeCatalog(typeof(TestingPart)));
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            catalog.Catalogs.Add(new DirectoryCatalog(GetDirectoryCatalogPath(), "*.exe"));
+            return catalog;
+        }
+
+        private static AssemblyCatalog GetAssemblyCatalog()
+        {
+            return new AssemblyCatalog(Assembly.GetExecutingAssembly());
+        }
+
+        private static DirectoryCatalog GetDirectoryCatalog()
+        {
+            return new DirectoryCatalog(GetDirectoryCatalogPath());
         }
 
         private static string GetDirectoryCatalogPath()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
+
+        private static TypeCatalog GetTypeCatalog()
+        {
+            return new TypeCatalog(typeof(FileRemover));
+        }
+
+        private static void TestGeneric<T>(T catalog) where T : ComposablePartCatalog
+        {
+            MefComposition.VerifyCatalog(catalog);
         }
 
         [Export]
