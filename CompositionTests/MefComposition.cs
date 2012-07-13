@@ -11,6 +11,23 @@ namespace CompositionTests
 {
     public class MefComposition
     {
+        public static void VerifyCatalog<T>(T catalog) where T : ComposablePartCatalog
+        {
+            var methods = from method in typeof(MefComposition).GetMethods()
+                          where method.Name.StartsWith("Verify")
+                          let parameters = method.GetParameters()
+                          where parameters.Length == 1 && parameters[0].ParameterType == typeof(T)
+                          select method;
+
+            if (methods.Count() == 1)
+            {
+                methods.Single().Invoke(null, new[] { catalog });
+                return;
+            }
+
+            MefComposition.VerifyCompositionInfo(catalog);
+        }
+
         public static void VerifyAggregateCatalog(AggregateCatalog catalog)
         {
             VerifyCompositionInfo(
@@ -32,7 +49,35 @@ namespace CompositionTests
 
         public static void VerifyAssemblyCatalog(AssemblyCatalog assemblyCatalog)
         {
-            VerifyCompositionInfo(assemblyCatalog, StringExtensions.ScrubVersionNumber, StringExtensions.ScrubPublicKeyToken);
+            VerifyCompositionInfo(
+                assemblyCatalog,
+                StringExtensions.ScrubVersionNumber,
+                StringExtensions.ScrubPublicKeyToken);
+        }
+
+        public static void VerifyDirectoryCatalog(string path)
+        {
+            VerifyDirectoryCatalog(new DirectoryCatalog(path));
+        }
+
+        public static void VerifyDirectoryCatalog(string path, string searchPattern)
+        {
+            VerifyDirectoryCatalog(new DirectoryCatalog(path, searchPattern));
+        }
+
+        public static void VerifyDirectoryCatalog(DirectoryCatalog directoryCatalog)
+        {
+            VerifyCompositionInfo(directoryCatalog, s => s.ScrubPath(directoryCatalog.Path));
+        }
+
+        public static void VerifyTypeCatalog(params Type[] types)
+        {
+            VerifyTypeCatalog(new TypeCatalog(types));
+        }
+
+        public static void VerifyTypeCatalog(TypeCatalog typeCatalog)
+        {
+            VerifyCompositionInfo(typeCatalog);
         }
 
         public static void VerifyCompositionInfo(ComposablePartCatalog catalog, params Func<string, string>[] scrubbers)
@@ -64,31 +109,6 @@ namespace CompositionTests
                 Array.ForEach(ex.LoaderExceptions, lex => Console.Error.WriteLine(lex.ToString()));
                 throw;
             }
-        }
-
-        public static void VerifyDirectoryCatalog(string path)
-        {
-            VerifyDirectoryCatalog(new DirectoryCatalog(path));
-        }
-
-        public static void VerifyDirectoryCatalog(string path, string searchPattern)
-        {
-            VerifyDirectoryCatalog(new DirectoryCatalog(path, searchPattern));
-        }
-
-        public static void VerifyDirectoryCatalog(DirectoryCatalog directoryCatalog)
-        {
-            VerifyCompositionInfo(directoryCatalog, s => s.ScrubPath(directoryCatalog.Path));
-        }
-
-        public static void VerifyTypeCatalog(params Type[] types)
-        {
-            VerifyTypeCatalog(new TypeCatalog(types));
-        }
-
-        public static void VerifyTypeCatalog(TypeCatalog typeCatalog)
-        {
-            VerifyCompositionInfo(typeCatalog);
         }
 
         private static Func<string, string> GetDirectoryCatalogScrubber(AggregateCatalog catalog)
