@@ -184,9 +184,9 @@ namespace CompositionTests.Tests
             return new TypeCatalog(typeof(FileRemover));
         }
 
-        private static void TestGeneric<T>(T aggregateCatalog) where T : ComposablePartCatalog
+        private static void TestGeneric<T>(T catalog) where T : ComposablePartCatalog
         {
-            MefComposition.VerifyCatalog(aggregateCatalog);
+            MefComposition.VerifyCatalog(catalog);
         }
 
         [Export]
