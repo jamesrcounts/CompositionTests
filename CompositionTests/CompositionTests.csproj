@@ -33,14 +33,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApprovalTests, Version=1.20.4603.28088, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+    <Reference Include="ApprovalTests, Version=1.21.4657.21485, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ApprovalTests.2.0\lib\ApprovalTests.dll</HintPath>
+      <HintPath>..\packages\ApprovalTests.2.1\lib\ApprovalTests.dll</HintPath>
     </Reference>
-    <Reference Include="ApprovalUtilities, Version=1.20.4603.28088, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+    <Reference Include="ApprovalUtilities, Version=1.21.4657.21484, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ApprovalTests.2.0\lib\ApprovalUtilities.dll</HintPath>
+      <HintPath>..\packages\ApprovalTests.2.1\lib\ApprovalUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ComponentModel.Composition.Diagnostics">
       <HintPath>..\packages\MEFX.Core.Unofficial.0.4\lib\Microsoft.ComponentModel.Composition.Diagnostics.dll</HintPath>
@@ -62,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CompositionTests.nuspec" />
-    <None Include="MyPackage.1.0.0.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
