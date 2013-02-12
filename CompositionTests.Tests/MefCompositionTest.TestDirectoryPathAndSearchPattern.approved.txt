@@ -1,4 +1,4 @@
-[Part] NuGet.CommandManager from: DirectoryCatalog (Path="...\")
+﻿[Part] NuGet.CommandManager from: DirectoryCatalog (Path="...\")
   [Export] NuGet.CommandManager (ContractName="NuGet.ICommandManager")
 
 [Part] NuGet.Commands.ConfigCommand from: DirectoryCatalog (Path="...\")

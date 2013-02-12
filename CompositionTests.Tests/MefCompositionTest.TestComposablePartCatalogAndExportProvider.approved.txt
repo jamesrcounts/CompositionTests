@@ -1,4 +1,4 @@
-[Part] CompositionTests.Tests.FileRemover from: AssemblyCatalog (Assembly="CompositionTests.Tests, Culture=neutral")
+﻿[Part] CompositionTests.Tests.FileRemover from: AssemblyCatalog (Assembly="CompositionTests.Tests, Culture=neutral")
   [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
 
 [Part] CompositionTests.Tests.MefCompositionTest+TestingPart from: AssemblyCatalog (Assembly="CompositionTests.Tests, Culture=neutral")

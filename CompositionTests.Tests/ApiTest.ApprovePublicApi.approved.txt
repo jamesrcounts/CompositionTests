@@ -1,4 +1,4 @@
-public class Composition
+﻿public class Composition
 {
     public Composition() { }
     public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }

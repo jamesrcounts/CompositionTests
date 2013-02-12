@@ -1,1 +1,1 @@
-System.InvalidOperationException: This is an inner exception.
+﻿System.InvalidOperationException: This is an inner exception.

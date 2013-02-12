@@ -1,4 +1,4 @@
-[Part] CompositionTests.Tests.FileRemover from: TypeCatalog (Types='CompositionTests.Tests.FileRemover, CompositionTests.Tests.MefCompositionTest+TestingPart').
+﻿[Part] CompositionTests.Tests.FileRemover from: TypeCatalog (Types='CompositionTests.Tests.FileRemover, CompositionTests.Tests.MefCompositionTest+TestingPart').
   [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
 
 [Part] CompositionTests.Tests.MefCompositionTest+TestingPart from: TypeCatalog (Types='CompositionTests.Tests.FileRemover, CompositionTests.Tests.MefCompositionTest+TestingPart').

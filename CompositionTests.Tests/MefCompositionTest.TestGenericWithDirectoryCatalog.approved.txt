@@ -1,4 +1,4 @@
-[Part] CompositionTests.Tests.FileRemover from: DirectoryCatalog (Path="...\")
+﻿[Part] CompositionTests.Tests.FileRemover from: DirectoryCatalog (Path="...\")
   [Export] CompositionTests.Tests.FileRemover (ContractName="CompositionTests.Tests.IRemoveFiles")
 
 [Part] CompositionTests.Tests.MefCompositionTest+TestingPart from: DirectoryCatalog (Path="...\")
