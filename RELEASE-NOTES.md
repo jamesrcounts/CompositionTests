@@ -1,22 +1,19 @@
-What's New in CompositionTests 1.3
+What's New in CompositionTests 2.0
 ===
 
-Generic VerifyCatalog Implementation
+New version policy
 ---
 
-CompositionTests 1.2 introduced customized `Verify*Catalog` convenience methods that automatically provide scrubbers that make sense with each catalog type.  Although this worked fine, using the convenience methods meant that you needed to make an extra change to your test if you decided to change the catalog type... not very convenient!  
+Following LLewellyn's lead with ApprovalTests, I am adopting a [JSON.NET-style](http://james.newtonking.com/archive/2012/04/04/json-net-strong-naming-and-assembly-version-numbers.aspx) version update policy.  Thanks to this policy, I no longer have to release a new version of CompositionTests every time ApprovalTests changes its own version.  Adopting this policy will enable me to sign CompositionTests in the future without creating a similar burden on anyone else.  For now, the package remains unsigned because its other dependency, the [MEFX Diagnostic Library](https://www.nuget.org/packages/MEFX.Core.Unofficial/) is unsigned.  I'll have to decide if I'm willing to do anything about that before I can even consider a signed version of CompositionTests.
 
-The new `VerifyCatalog<T>` method addresses this shortcoming.  The new method will take any catalog descended from `ComposablePartCatalog` and attempt to find an appropriate `Verify*Catalog` implementation.  When the method cannot find an appropriate implementation, the default is to use `VerifyCompositionInfo` with no scrubbers.
+To summarize, AssemblyVersion will stay at 2.0.0, the real version can be found by looking at AssemblyFileVersion, or by looking at the nuget package version, which will be 2.0.1 for this release.
 
-ApprovalTests 2.0
+Common Language Specification Compliance
 ---
 
-This version of CompositionTests is built against [ApprovalTests 2.0](http://blog.approvaltests.com/2012/08/whats-new-in-approvaltestsnet-v20.html "ApprovalTests Blog").  The CompositionTests 1.2.0 NuGet package incorrectly specified the ApprovalTests dependency as `x >= 1.9`.  Because the ApprovalTest assemblies are signed, dependent assemblies (like CompositionTests) will only load the ApprovalTests assembly which they are built against, so "greater than or equal to" should have been "exactly equal to".  The package for CompositionTests 1.3.0 correctly specifies the dependency as `x == 2.0`.
+The CompositionTests library now declares itself CLS compliant.  However, MEFX.Core does not make the same declaration, so certain methods that interact with the core are individually marked non-compliant.  Again, I'll have to decide that I'm willing to modify and maintain a fork of MEFX.Core before I can do anything about that, since I don't think Microsoft has plans to provide any more updates to this piece.  
 
-If CompostionTests stopped working for you after upgrading to ApprovalTests 2.0, this release should fix that for you.  
-
-
-Reminder
+Removed Obsolete Methods
 ---
 
-Remember `DiscoverParts` and `Composition` are obsolete and will be removed in a future release.  Please migrate to `Verify*` and `MefComposition`.
+Methods and types marked with the `ObsoleteAttribute` in the 1.0 time-frame have been removed in order to clean up the interface in 2.0.  You must now migrate to `Verify*` and `MefComposition` if you wish to use new versions of the library.
