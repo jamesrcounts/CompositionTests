@@ -1,11 +1,13 @@
+using Microsoft.ComponentModel.Composition.Diagnostics;
+using System;
 using System.IO;
 using System.Linq;
-using Microsoft.ComponentModel.Composition.Diagnostics;
 
 namespace CompositionTests
 {
     public static class OrderedCompositionInfoTextFormatter
     {
+        [CLSCompliant(false)]
         public static string Format(CompositionInfo info)
         {
             using (var output = new StringWriter())
@@ -15,6 +17,7 @@ namespace CompositionTests
             }
         }
 
+        [CLSCompliant(false)]
         public static void Write(CompositionInfo info, TextWriter output)
         {
             var partDefinitions = info.PartDefinitions;

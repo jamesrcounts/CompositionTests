@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ApprovalTests;
+using Microsoft.ComponentModel.Composition.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Reflection;
-using ApprovalTests;
-using Microsoft.ComponentModel.Composition.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CompositionTests.Tests
 {
@@ -44,13 +44,6 @@ namespace CompositionTests.Tests
             MefComposition.VerifyCompositionInfo(
                 catalog,
                 s => s.ScrubVersionNumber().ScrubPublicKeyToken());
-        }
-
-        [TestMethod]
-        public void TestGenericWithComposablePartCatalog()
-        {
-            ComposablePartCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            TestGeneric(catalog);
         }
 
         [TestMethod]
@@ -104,6 +97,13 @@ namespace CompositionTests.Tests
         public void TestGenericWithAssemblyCatalog()
         {
             TestGeneric(GetAssemblyCatalog());
+        }
+
+        [TestMethod]
+        public void TestGenericWithComposablePartCatalog()
+        {
+            ComposablePartCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            TestGeneric(catalog);
         }
 
         [TestMethod]
@@ -202,46 +202,5 @@ namespace CompositionTests.Tests
             [Import]
             public int MyProperty { get; set; }
         }
-
-#pragma warning disable 0618
-
-        #region Obsolete
-
-        [TestMethod]
-        public void TestDiscoverParts()
-        {
-            MefComposition.DiscoverParts(
-                new AssemblyCatalog(Assembly.GetExecutingAssembly()),
-                s => s.ScrubVersionNumber().ScrubPublicKeyToken());
-        }
-
-        [TestMethod]
-        public void TestDiscoverPartsWithCatalogAndProvider()
-        {
-            AssemblyCatalog catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            CompositionContainer compositionContainer = new CompositionContainer(catalog);
-            MefComposition.DiscoverParts(
-                catalog,
-                compositionContainer,
-                s => s.ScrubPublicKeyToken(),
-                s => s.ScrubVersionNumber());
-        }
-
-        [TestMethod]
-        public void TestDiscoverPartsWithFactory()
-        {
-            MefComposition.DiscoverParts(
-                () =>
-                {
-                    var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-                    return new CompositionInfo(catalog, new CompositionContainer(catalog));
-                },
-                s => s.ScrubPublicKeyToken(),
-                s => s.ScrubVersionNumber());
-        }
-
-        #endregion Obsolete
-
-#pragma warning restore 0618
     }
 }

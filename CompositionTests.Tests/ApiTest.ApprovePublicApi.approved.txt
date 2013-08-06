@@ -1,17 +1,5 @@
-﻿public class Composition
+﻿public class MefComposition
 {
-    public Composition() { }
-    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }
-    public void DiscoverParts(System.Func<Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo> getCompositionInfo, System.Func<string, string>[] scrubbers) { }
-    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.ComponentModel.Composition.Hosting.ExportProvider host, System.Func<string, string>[] scrubbers) { }
-}
-
-public class MefComposition
-{
-    public MefComposition() { }
-    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<string, string>[] scrubbers) { }
-    public void DiscoverParts(System.Func<Microsoft.ComponentModel.Composition.Diagnostics.CompositionInfo> getCompositionInfo, System.Func<string, string>[] scrubbers) { }
-    public void DiscoverParts(System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.ComponentModel.Composition.Hosting.ExportProvider host, System.Func<string, string>[] scrubbers) { }
     public void VerifyAggregateCatalog(System.ComponentModel.Composition.Hosting.AggregateCatalog catalog) { }
     public void VerifyAssemblyCatalog(System.Reflection.Assembly assembly) { }
     public void VerifyAssemblyCatalog(System.ComponentModel.Composition.Hosting.AssemblyCatalog assemblyCatalog) { }

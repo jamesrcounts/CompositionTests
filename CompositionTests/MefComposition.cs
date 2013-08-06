@@ -1,33 +1,16 @@
-﻿using System;
+﻿using ApprovalTests;
+using ApprovalUtilities.Utilities;
+using Microsoft.ComponentModel.Composition.Diagnostics;
+using System;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Reflection;
-using ApprovalTests;
-using ApprovalUtilities.Utilities;
-using Microsoft.ComponentModel.Composition.Diagnostics;
 
 namespace CompositionTests
 {
-    public class MefComposition
+    public static class MefComposition
     {
-        public static void VerifyCatalog<T>(T catalog) where T : ComposablePartCatalog
-        {
-            var methods = from method in typeof(MefComposition).GetMethods()
-                          where method.Name.StartsWith("Verify")
-                          let parameters = method.GetParameters()
-                          where parameters.Length == 1 && parameters[0].ParameterType == typeof(T)
-                          select method;
-
-            if (methods.Count() == 1)
-            {
-                methods.Single().Invoke(null, new[] { catalog });
-                return;
-            }
-
-            MefComposition.VerifyCompositionInfo(catalog);
-        }
-
         public static void VerifyAggregateCatalog(AggregateCatalog catalog)
         {
             VerifyCompositionInfo(
@@ -55,29 +38,21 @@ namespace CompositionTests
                 StringExtensions.ScrubPublicKeyToken);
         }
 
-        public static void VerifyDirectoryCatalog(string path)
+        public static void VerifyCatalog<T>(T catalog) where T : ComposablePartCatalog
         {
-            VerifyDirectoryCatalog(new DirectoryCatalog(path));
-        }
+            var methods = from method in typeof(MefComposition).GetMethods()
+                          where method.Name.StartsWith("Verify")
+                          let parameters = method.GetParameters()
+                          where parameters.Length == 1 && parameters[0].ParameterType == typeof(T)
+                          select method;
 
-        public static void VerifyDirectoryCatalog(string path, string searchPattern)
-        {
-            VerifyDirectoryCatalog(new DirectoryCatalog(path, searchPattern));
-        }
+            if (methods.Count() == 1)
+            {
+                methods.Single().Invoke(null, new[] { catalog });
+                return;
+            }
 
-        public static void VerifyDirectoryCatalog(DirectoryCatalog directoryCatalog)
-        {
-            VerifyCompositionInfo(directoryCatalog, s => s.ScrubPath(directoryCatalog.Path));
-        }
-
-        public static void VerifyTypeCatalog(params Type[] types)
-        {
-            VerifyTypeCatalog(new TypeCatalog(types));
-        }
-
-        public static void VerifyTypeCatalog(TypeCatalog typeCatalog)
-        {
-            VerifyCompositionInfo(typeCatalog);
+            MefComposition.VerifyCompositionInfo(catalog);
         }
 
         public static void VerifyCompositionInfo(ComposablePartCatalog catalog, params Func<string, string>[] scrubbers)
@@ -111,6 +86,31 @@ namespace CompositionTests
             }
         }
 
+        public static void VerifyDirectoryCatalog(string path)
+        {
+            VerifyDirectoryCatalog(new DirectoryCatalog(path));
+        }
+
+        public static void VerifyDirectoryCatalog(string path, string searchPattern)
+        {
+            VerifyDirectoryCatalog(new DirectoryCatalog(path, searchPattern));
+        }
+
+        public static void VerifyDirectoryCatalog(DirectoryCatalog directoryCatalog)
+        {
+            VerifyCompositionInfo(directoryCatalog, s => s.ScrubPath(directoryCatalog.Path));
+        }
+
+        public static void VerifyTypeCatalog(params Type[] types)
+        {
+            VerifyTypeCatalog(new TypeCatalog(types));
+        }
+
+        public static void VerifyTypeCatalog(TypeCatalog typeCatalog)
+        {
+            VerifyCompositionInfo(typeCatalog);
+        }
+
         private static Func<string, string> GetDirectoryCatalogScrubber(AggregateCatalog catalog)
         {
             var directoryCatalogPaths = from cat in catalog.Catalogs
@@ -130,50 +130,5 @@ namespace CompositionTests
                 return s;
             };
         }
-
-        #region Obsolete
-
-        [Obsolete("DiscoverParts has been replaced with Verify* methods which are customized for each catalog type, or you can use an overload of VerifyCompositionInfo as a direct replacement for this method.")]
-        public static void DiscoverParts(ComposablePartCatalog catalog, params Func<string, string>[] scrubbers)
-        {
-            VerifyCompositionInfo(catalog, scrubbers);
-        }
-
-        [Obsolete("DiscoverParts has been replaced with Verify* methods which are customized for each catalog type, or you can use an overload of VerifyCompositionInfo as a direct replacement for this method.")]
-        public static void DiscoverParts(ComposablePartCatalog catalog, ExportProvider host, params Func<string, string>[] scrubbers)
-        {
-            VerifyCompositionInfo(catalog, host, scrubbers);
-        }
-
-        [Obsolete("DiscoverParts has been replaced with Verify* methods which are customized for each catalog type, or you can use an overload of VerifyCompositionInfo as a direct replacement for this method.")]
-        public static void DiscoverParts(Func<CompositionInfo> getCompositionInfo, params Func<string, string>[] scrubbers)
-        {
-            VerifyCompositionInfo(getCompositionInfo, scrubbers);
-        }
-
-        #endregion Obsolete
     }
-
-    #region Obsolete
-
-    [Obsolete("Use MefComposition instead.")]
-    public class Composition
-    {
-        public static void DiscoverParts(ComposablePartCatalog catalog, params Func<string, string>[] scrubbers)
-        {
-            MefComposition.DiscoverParts(catalog, new CompositionContainer(catalog), scrubbers);
-        }
-
-        public static void DiscoverParts(ComposablePartCatalog catalog, ExportProvider host, params Func<string, string>[] scrubbers)
-        {
-            MefComposition.DiscoverParts(() => new CompositionInfo(catalog, host), scrubbers);
-        }
-
-        public static void DiscoverParts(Func<CompositionInfo> getCompositionInfo, params Func<string, string>[] scrubbers)
-        {
-            MefComposition.DiscoverParts(getCompositionInfo, scrubbers);
-        }
-    }
-
-    #endregion Obsolete
 }
