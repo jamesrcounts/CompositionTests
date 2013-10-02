@@ -72,12 +72,8 @@ namespace CompositionTests
                 var result = OrderedCompositionInfoTextFormatter.Format(getCompositionInfo())
                     .NormalizeLineEndings()
                     .NormalizeIndentation();
-                foreach (var scrubber in scrubbers)
-                {
-                    result = scrubber(result);
-                }
 
-                Approvals.Verify(result);
+                Approvals.Verify(result, ScrubberUtils.Combine(scrubbers));
             }
             catch (ReflectionTypeLoadException ex)
             {
